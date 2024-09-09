@@ -26,12 +26,12 @@ area:
     endMonth: 10 
     endDay: 11
     ended: 12 
-	
+
 artist:
-  fileLocation: c:/Users/110000/AppData/Local/Microsoft/WindowsApps/mbdump.tar/mbdump/mbdump
+  fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: artist
   immutable: org.nanotek.brainz.base.entity.Artist
-  baseMap:
+  delegateMap:
     artistId: 0
     gid: 1
     artistName: 2
@@ -49,5 +49,3 @@ artist:
     editsPending: 14
     lastUpdated: 15
     ended: 16
-    beginAreaId: 17
-    endAreaId: 18
