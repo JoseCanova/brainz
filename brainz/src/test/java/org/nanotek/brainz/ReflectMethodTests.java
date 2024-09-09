@@ -1,5 +1,6 @@
 package org.nanotek.brainz;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.stream.Stream;
@@ -26,6 +27,18 @@ public class ReflectMethodTests {
 		System.err.println(meth.length);
 		Stream.of(meth)
 		.forEach(m -> System.err.println(m.getName()));
+		Constructor<?>[] constructors = AreaRecord.class.getDeclaredConstructors(); 
+		
+		Stream
+		.of(constructors)
+		.filter(c -> c.getParameterCount()>0)
+		.forEach(c ->{
+			Stream.of( c.getParameters())
+			.forEach(p -> {
+				System.out.println(p.getName());
+			});
+		});
+		
 		
 	}
 	
