@@ -1,8 +1,12 @@
 spring:
   application:
     name=brainz
-    
-
+  datasource:
+    driver-class-name=org.hsqldb.jdbc.JDBCDriver
+    url=jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
+    username=sa
+    password=
+    jpa.hibernate.ddl-auto=create
     
 area: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
