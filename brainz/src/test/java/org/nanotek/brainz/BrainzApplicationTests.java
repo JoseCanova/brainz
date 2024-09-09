@@ -43,9 +43,9 @@ class BrainzApplicationTests {
 
 	}
 
-	private Area readAreaValue(String s) {
+	private AreaRecord readAreaValue(String s) {
 		try {
-			return objectMapper.readValue(s, Area.class);
+			return objectMapper.readValue(s, AreaRecord.class);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

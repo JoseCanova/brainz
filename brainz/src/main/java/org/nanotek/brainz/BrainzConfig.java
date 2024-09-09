@@ -1,6 +1,7 @@
 package org.nanotek.brainz;
 
 import org.nanotek.brainz.base.MapConfigurationBase;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,9 +16,18 @@ public class BrainzConfig {
 	
 	@Bean
 	@ConfigurationProperties(value = "area")
+	@Qualifier(value="area")
 	public MapConfigurationBase mapConfigurationBase() {
 		return new MapConfigurationBase();
 	}
+	
+	@Bean
+	@ConfigurationProperties(value = "artist")
+	@Qualifier(value="artist")
+	public MapConfigurationBase mapArtistConfigurationBase() {
+		return new MapConfigurationBase();
+	}
+	
 	
 	@Bean
 	public ObjectMapper getObjectMapper() {

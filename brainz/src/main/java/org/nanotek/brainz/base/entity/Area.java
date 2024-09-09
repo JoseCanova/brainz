@@ -1,5 +1,10 @@
 package org.nanotek.brainz.base.entity;
 
+import java.util.Optional;
+
+import org.nanotek.brainz.base.entity.mutable.MutableAreaIdEntity;
+import org.nanotek.brainz.base.entity.mutable.MutableAreaNameEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,7 +12,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="area")
-public class Area {
+public class Area implements 
+MutableAreaIdEntity<Long>,
+MutableAreaNameEntity<String>{
 	
 	@Id
 	private Long areaId;
@@ -28,8 +35,8 @@ public class Area {
 		return this.areaId;
 	}
 	
-	public Long areaId(Long areaId) {
-		return this.areaId = areaId;
+	public Optional<Long> areaId(Long areaId) {
+		return Optional.of(this.areaId = areaId);
 	}
 	
 	@Column(name="areaName")
@@ -37,8 +44,8 @@ public class Area {
 		return this.areaName;
 	}
 	
-	public String areaName(String areaName) {
-		return this.areaName = areaName;
+	public Optional<String> areaName(String areaName) {
+		return Optional.of(this.areaName = areaName);
 	}
 	
 	
