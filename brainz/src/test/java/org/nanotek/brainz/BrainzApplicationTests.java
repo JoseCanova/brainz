@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import reactor.core.publisher.Flux;
@@ -30,17 +31,21 @@ class BrainzApplicationTests {
 	void contextLoads() {
 		assertNotNull(mapConfigurationBase);
 		assertNotNull(objectMapper);
-		
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		Flux<String> flux =	Flux.
 							fromStream(new NioKongStreamBuilder("/home/jose/Downloads/mbdump/mbdump/area").build());
 		
 		flux
 		.map(s -> s.split("\t"))
 		.map(sary -> mapToMap(sary))
-		.map(map -> writeJsonString(map))
-		.map(s -> readAreaValue(s))
+		//.map(map -> writeJsonString(map))
+		.map(s -> readAreaValue2(s))
 		.subscribe(a -> System.out.println(a.toString()));
 
+	}
+
+	private Object readAreaValue2(Map<String, ?> s) {
+		return objectMapper.convertValue(s , AreaRecord.class);
 	}
 
 	private AreaRecord readAreaValue(String s) {
