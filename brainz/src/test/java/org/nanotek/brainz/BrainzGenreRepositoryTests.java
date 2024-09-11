@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.MapConfigurationBase;
+import org.nanotek.brainz.base.entity.Genre;
+import org.nanotek.brainz.base.record.GenreRecord;
+import org.nanotek.brainz.base.repository.GenreRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.nanotek.brainz.util.CsvMapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import reactor.core.publisher.Flux;
 
 @SpringBootTest
-public class BrainzFileConfigurationTests {
+public class BrainzGenreRepositoryTests {
 
 	@Autowired
 	List<MapConfigurationBase> filesConfiguration;
@@ -31,11 +34,14 @@ public class BrainzFileConfigurationTests {
 	@Autowired
 	CsvMapUtils csvMapUtils;
 	
+	@Autowired
+	GenreRepository genreRepository;
 	
 	@Test
 	public void testFileConfiguation() {
 		assertNotNull(filesConfiguration);
 		assertTrue(filesConfiguration.size() > 0);
+		assertNotNull(genreRepository);
 		Map<String , MapConfigurationBase > mapEntries = filesConfiguration
 		  .stream()
 		  .map(mcb -> Map.entry(mcb.getFileName(), mcb))
@@ -52,12 +58,13 @@ public class BrainzFileConfigurationTests {
 	   .map(s -> s.split("\t"))
 	   .map(sary -> mapToMap(sary , genreConfiguration.getDelegateMap()))
 	   .map(s -> objectMapper.convertValue(s , genreConfiguration.getImmutable()))
+	   .map(gr -> GenreRecord.class.cast(gr))
+	   .filter(gr -> gr.name().equals("parang"))
+	   .map(gr -> objectMapper.convertValue(gr , Genre.class))
+	   .map(gr -> genreRepository.save(gr))
+	   .map(gr -> genreRepository.findByName(gr.name()))
 	   .subscribe( v -> System.err.println(v.toString()));
 
-	}
-	
-	private Object convertValue(Map<String, ?> s , Class<?> clazz) {
-		return objectMapper.convertValue(s , clazz);
 	}
 	
 	public Map<String,?> mapToMap(String[] sary, Map<String, Integer> genreConfigurationMap) {

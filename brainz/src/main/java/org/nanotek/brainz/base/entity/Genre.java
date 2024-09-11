@@ -1,5 +1,6 @@
 package org.nanotek.brainz.base.entity;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -7,12 +8,17 @@ import org.nanotek.brainz.base.Base;
 import org.nanotek.brainz.base.entity.mutable.MutableGidEntity;
 import org.nanotek.brainz.base.entity.mutable.MutableIdEntity;
 import org.nanotek.brainz.base.entity.mutable.MutableNameEntity;
-import org.nanotek.brainz.base.record.GenreRecord;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name="genre")
 public class Genre 
@@ -24,13 +30,26 @@ MutableNameEntity<String>{
 	@Id
 	private Long id;
 	
+	@Column(name="gid")
 	private UUID gid; 
 	
+	@Column(name="genreName",length=1024)
 	private String name;
+
 	
-	private String comment;
+	public Genre() {
+		super();
+	}
 	
-	
+	@JsonCreator
+	public Genre(@JsonProperty("id") Long id,
+			@JsonProperty("gid")UUID gid,
+			@JsonProperty("name")String name) {
+		this.id = id;
+		this.gid=gid;
+		this.name=name;
+	}
+
 	public Long id() {
 		return this.id;
 	}
@@ -54,4 +73,28 @@ MutableNameEntity<String>{
 	public Optional<String> name(String name){
 		return Optional.of(this.name=name);
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(gid, id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Genre other = (Genre) obj;
+		return Objects.equals(gid, other.gid) && Objects.equals(id, other.id) && Objects.equals(name, other.name);
+	}
+
+	@Override
+	public String toString() {
+		return "Genre [id=" + id + ", gid=" + gid + ", name=" + name + "]";
+	}
+	
+	
 }
