@@ -62,7 +62,7 @@ public class BrainzGenreRepositoryTests {
 	   .filter(gr -> gr.name().equals("parang"))
 	   .map(gr -> objectMapper.convertValue(gr , Genre.class))
 	   .map(gr -> genreRepository.save(gr))
-	   .map(gr -> genreRepository.findByName(gr.name()))
+	   .map(gr -> genreRepository.findById(gr.id()))
 	   .subscribe( v -> System.err.println(v.toString()));
 
 	}
