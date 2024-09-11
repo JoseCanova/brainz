@@ -49,3 +49,39 @@ artist:
     editsPending: 14
     lastUpdated: 15
     ended: 16
+    
+genre:
+  fileLocation: /home/jose/Downloads/mbdump/mbdump
+  fileName: genre
+  immutable: org.nanotek.brainz.base.record.GenreRecord
+  delegateMap:
+    id: 0
+    gid: 1
+    name: 2
+
+fileconfig:
+  area:
+    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileName: area
+    immutable: org.nanotek.brainz.base.entity.Area
+    delegateMap:     
+      areaId: 0 
+      gid: 1 
+      areaName: 2
+  artist:
+    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileName: artist
+    immutable: org.nanotek.brainz.base.entity.Artist
+    delegateMap:
+      artistId: 0
+      gid: 1
+      artistName: 2
+      sortName: 3
+  genre:
+    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileName: genre
+    immutable: org.nanotek.brainz.base.record.GenreRecord
+    delegateMap:
+      id: 0
+      gid: 1
+      name: 2

@@ -1,5 +1,8 @@
 package org.nanotek.brainz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -28,9 +31,23 @@ public class BrainzConfig {
 		return new MapConfigurationBase();
 	}
 	
+	@Bean
+	@ConfigurationProperties(value = "genre")
+	@Qualifier(value="genre")
+	public MapConfigurationBase mapAGenreConfigurationBase() {
+		return new MapConfigurationBase();
+	}
+	
 	
 	@Bean
 	public ObjectMapper getObjectMapper() {
 		return new ObjectMapper();
 	}
+	
+	@Bean
+	@ConfigurationProperties(value="fileconfig")
+	public List<MapConfigurationBase> filesConfiguration(){
+		return new ArrayList<MapConfigurationBase>();
+	}
+	
 }
