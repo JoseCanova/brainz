@@ -4,32 +4,43 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.nanotek.brainz.base.Base;
-import org.nanotek.brainz.base.entity.mutable.MutableDescriptionEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableGidEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableNameEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableParentEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableTypeIdEntity;
+import org.nanotek.brainz.base.entity.mutable.ArtistTypeEntity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+@Table(name="artist_type")
 public class ArtistType 
 implements Base<ArtistType> ,
- MutableTypeIdEntity<Long>,
- MutableNameEntity<String>,
- MutableParentEntity<Long>,
- MutableDescriptionEntity<String>,
- MutableGidEntity<UUID>{
+ArtistTypeEntity{
 
-	
+	@Id
 	private Long typeId;
+	@Column(name="name")
 	private String name;
+	@Column(name="parent")
 	private Long parent;
+	@Column(name="description",length=2048)
 	private String description;
+	@Column(name="gid")
 	private UUID gid;
 	
+	
+	public ArtistType() {
+		super();
+	}
+
 	@JsonCreator
-	public ArtistType(Long typeId,String name,Long parent,String description,UUID gid) {
+	public ArtistType(
+			@JsonProperty("typeId") Long typeId, @JsonProperty("name") String name, @JsonProperty("parent") Long parent, @JsonProperty("description") String description,@JsonProperty("gid")UUID gid) {
 		this.typeId=typeId;
 		this.name = name;
 		this.parent = parent;
@@ -64,7 +75,7 @@ implements Base<ArtistType> ,
 
 	@Override
 	public Optional<Long> parent(Long t) {
-		return Optional.of(this.parent = t);
+		return Optional.ofNullable(this.parent = t);
 	}
 
 	@Override
@@ -86,7 +97,12 @@ implements Base<ArtistType> ,
 	public Optional<UUID> gid(UUID t) {
 		return Optional.of(this.gid=t);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ArtistType [typeId=" + typeId + ", name=" + name + ", parent=" + parent + ", description=" + description
+				+ ", gid=" + gid + "]";
+	}
 	
 	
 }

@@ -10,6 +10,7 @@ import org.nanotek.brainz.base.entity.immutables.TypeIdEntity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record ArtistTypeRecord
@@ -21,7 +22,8 @@ DescriptionEntity<String>,
 GidEntity<UUID>{
 
 	@JsonCreator
-	public ArtistTypeRecord(Long typeId,String name,Long parent,String description,UUID gid) {
+	public ArtistTypeRecord(
+			@JsonProperty("typeId") Long typeId, @JsonProperty("name") String name, @JsonProperty("parent") Long parent, @JsonProperty("description") String description,@JsonProperty("gid")UUID gid) {
 		this.typeId=typeId;
 		this.name = name;
 		this.parent = parent;
