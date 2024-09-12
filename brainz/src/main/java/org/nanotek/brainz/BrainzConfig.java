@@ -38,6 +38,12 @@ public class BrainzConfig {
 		return new MapConfigurationBase();
 	}
 	
+	@Bean
+	@ConfigurationProperties(value = "artisttype")
+	@Qualifier(value="artist_type")
+	public MapConfigurationBase mapArtistTypeConfigurationBase() {
+		return new MapConfigurationBase();
+	}
 	
 	@Bean
 	public ObjectMapper getObjectMapper() {
