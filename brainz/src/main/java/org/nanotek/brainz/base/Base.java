@@ -10,6 +10,8 @@ import java.util.function.Supplier;
 
 import org.nanotek.brainz.KongSupplier;
 
+import jakarta.persistence.MappedSuperclass;
+
 public interface Base<K extends Base<?>> extends Serializable , KongSupplier<K> , Comparable<K>{
 
 	static String hash = "35454B055CC325EA1AF2126E27707052";

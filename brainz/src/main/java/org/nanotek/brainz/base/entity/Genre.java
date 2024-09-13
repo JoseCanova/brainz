@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.nanotek.brainz.base.Base;
 import org.nanotek.brainz.base.entity.mutable.MutableGidEntity;
 import org.nanotek.brainz.base.entity.mutable.MutableIdEntity;
 import org.nanotek.brainz.base.entity.mutable.MutableNameEntity;
@@ -15,21 +14,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name="genre")
 public class Genre 
-implements Base<Genre>,
+extends BaseEntity<Genre,Long>
+implements 
 MutableIdEntity<Long>,
 MutableGidEntity<UUID>,
 MutableNameEntity<String>{
 
-	@Id
-	private Long id;
-	
 	@Column(name="gid")
 	private UUID gid; 
 	

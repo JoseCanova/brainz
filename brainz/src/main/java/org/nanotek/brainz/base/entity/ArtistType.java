@@ -19,11 +19,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="artist_type")
 public class ArtistType 
-implements Base<ArtistType> ,
+extends BaseEntity<ArtistType,Long>
+implements
 ArtistTypeEntity{
 
-	@Id
-	private Long typeId;
 	@Column(name="name")
 	private String name;
 	@Column(name="parent")
@@ -41,7 +40,7 @@ ArtistTypeEntity{
 	@JsonCreator
 	public ArtistType(
 			@JsonProperty("typeId") Long typeId, @JsonProperty("name") String name, @JsonProperty("parent") Long parent, @JsonProperty("description") String description,@JsonProperty("gid")UUID gid) {
-		this.typeId=typeId;
+		this.id=typeId;
 		this.name = name;
 		this.parent = parent;
 		this.description=description;
@@ -49,13 +48,13 @@ ArtistTypeEntity{
 	}
 	
 	@Override
-	public Long typeId() {
-		return this.typeId;
+	public Long id() {
+		return this.id;
 	}
 	
 	@Override
-	public Optional<Long> typeId(Long typeId) {
-		return Optional.of(this.typeId = typeId);
+	public Optional<Long> id(Long typeId) {
+		return Optional.of(this.id = typeId);
 	}
 	
 	
@@ -100,7 +99,7 @@ ArtistTypeEntity{
 
 	@Override
 	public String toString() {
-		return "ArtistType [typeId=" + typeId + ", name=" + name + ", parent=" + parent + ", description=" + description
+		return "ArtistType [typeId=" + id + ", name=" + name + ", parent=" + parent + ", description=" + description
 				+ ", gid=" + gid + "]";
 	}
 	

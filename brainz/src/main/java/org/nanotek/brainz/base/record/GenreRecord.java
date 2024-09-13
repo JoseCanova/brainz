@@ -10,10 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.validation.constraints.NotNull;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record GenreRecord(Long id, UUID gid , String name) 
-implements IdEntity<Long> , GidEntity<UUID>,NameEntity<String>{
+public record GenreRecord(@NotNull Long id, UUID gid , String name) 
+implements 
+IdEntity<Long> , 
+GidEntity<UUID>,
+NameEntity<String>{
 	
 	@JsonCreator
 	public GenreRecord(@JsonProperty("id") Long id,

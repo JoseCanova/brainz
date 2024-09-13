@@ -12,17 +12,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.nanotek.brainz.base.entity.ArtistType;
-import org.nanotek.brainz.base.repository.ArtistTypeRepository;
+import org.nanotek.brainz.base.repository.BaseRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import reactor.core.publisher.Flux;
 
 @SpringBootTest
-public class BrainzArtistTypeTest {
+public class BrainzArtistTypeTest{
 
 
 	@Autowired
@@ -34,7 +35,7 @@ public class BrainzArtistTypeTest {
 	MapConfigurationBase artistTypeConfiguration;
 	
 	@Autowired
-	ArtistTypeRepository repository;
+	BaseRepository<ArtistType,Long> repository;
 	
 	@BeforeEach
 	public void loadMap() {
@@ -47,7 +48,7 @@ public class BrainzArtistTypeTest {
 	
 	
 	@Test
-	public void testBrainzArtistType() {
+	public   void testBrainzArtistType() {
 		assertNotNull(filesConfiguration);
 		Stream<String> fileStream = 
 				new NioKongStreamBuilder(artistTypeConfiguration.getFileLocation()
@@ -59,7 +60,7 @@ public class BrainzArtistTypeTest {
 		.map(sary -> mapToMap(sary))
 		.map(m -> objectMapper.convertValue(m , ArtistType.class))
 		.subscribe(at -> repository.save(at));
-		List result = repository.findAll();
+		List result = repository.findAll(Example.of(new ArtistType()));
 		assertTrue(result.size()>1);
 		Flux.fromIterable(result)
 		.subscribe(at -> System.out.println(at.toString()));

@@ -9,6 +9,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -54,6 +56,14 @@ public class BrainzConfig {
 	@ConfigurationProperties(value="fileconfig")
 	public List<MapConfigurationBase> filesConfiguration(){
 		return new ArrayList<MapConfigurationBase>();
+	}
+	
+	@Bean
+	@Primary
+	public LocalValidatorFactoryBean getLocalValidatorFactoryBean() { 
+		LocalValidatorFactoryBean validatorFactoryBean =  new LocalValidatorFactoryBean();
+		//validatorFactoryBean.setValidationMessageSource(messageSource());
+		return validatorFactoryBean;
 	}
 	
 }

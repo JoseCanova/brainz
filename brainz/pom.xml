@@ -72,6 +72,16 @@
 		    <artifactId>hsqldb</artifactId>
 		    <scope>runtime</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>4.0.2</version>
+        </dependency>
+
 	</dependencies>
 
 	<build>
