@@ -2,8 +2,7 @@ package org.nanotek.brainz.base.entity;
 
 import java.util.Optional;
 
-import org.nanotek.brainz.base.entity.mutable.MutableAreaIdEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableAreaNameEntity;
+import org.nanotek.brainz.base.entity.immutables.AreaEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,8 +12,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="area")
 public class Area implements 
-MutableAreaIdEntity<Long>,
-MutableAreaNameEntity<String>{
+AreaEntity{
 	
 	@Id
 	private Long areaId;

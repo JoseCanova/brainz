@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.nanotek.brainz.base.Base;
-import org.nanotek.brainz.base.entity.mutable.ArtistTypeEntity;
+import org.nanotek.brainz.base.entity.mutable.MutableArtistTypeEntity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 public class ArtistType 
 extends BaseEntity<ArtistType,Long>
 implements
-ArtistTypeEntity{
+MutableArtistTypeEntity{
 
 	@Column(name="name")
 	private String name;
