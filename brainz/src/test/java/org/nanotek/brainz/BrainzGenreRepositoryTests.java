@@ -20,6 +20,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.validation.Validator;
+import jakarta.validation.groups.Default;
 import reactor.core.publisher.Flux;
 
 @SpringBootTest
@@ -37,11 +39,15 @@ public class BrainzGenreRepositoryTests {
 	@Autowired
 	GenreRepository genreRepository;
 	
+	@Autowired
+	Validator validator;
+	
 	@Test
 	public void testFileConfiguation() {
 		assertNotNull(filesConfiguration);
 		assertTrue(filesConfiguration.size() > 0);
 		assertNotNull(genreRepository);
+		assertNotNull(validator);
 		Map<String , MapConfigurationBase > mapEntries = filesConfiguration
 		  .stream()
 		  .map(mcb -> Map.entry(mcb.getFileName(), mcb))
@@ -60,6 +66,7 @@ public class BrainzGenreRepositoryTests {
 	   .map(s -> objectMapper.convertValue(s , genreConfiguration.getImmutable()))
 	   .map(gr -> GenreRecord.class.cast(gr))
 	   .filter(gr -> gr.name().equals("parang"))
+	   .filter(gr -> genreRecordIsValid(gr))
 	   .map(gr -> objectMapper.convertValue(gr , Genre.class))
 	   .map(gr -> genreRepository.save(gr))
 	   .map(gr -> genreRepository.findById(gr.id()))
@@ -67,6 +74,11 @@ public class BrainzGenreRepositoryTests {
 
 	}
 	
+	private boolean genreRecordIsValid(GenreRecord gr) {
+		var isValid = validator.validate(gr, Default.class).size() ==0;
+		return isValid;
+	}
+
 	public Map<String,?> mapToMap(String[] sary, Map<String, Integer> genreConfigurationMap) {
 		Map<String,Integer> theMap = 
 				genreConfigurationMap;

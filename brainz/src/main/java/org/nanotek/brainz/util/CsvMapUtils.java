@@ -24,6 +24,10 @@ public class CsvMapUtils {
 		throw new RuntimeException();
 	}
 
+	public String convertToEmpty(String column) {
+		return column.replace("\\N", "");
+	}
+	
 	public String writeJsonString(Map<String, ?> map) {
 		try {
 			return objectMapper.writeValueAsString(map);
