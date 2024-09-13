@@ -2,6 +2,7 @@ package org.nanotek.brainz.base.record;
 
 import java.util.UUID;
 
+import org.nanotek.brainz.base.entity.immutables.GenreEntity;
 import org.nanotek.brainz.base.entity.immutables.GidEntity;
 import org.nanotek.brainz.base.entity.immutables.IdEntity;
 import org.nanotek.brainz.base.entity.immutables.NameEntity;
@@ -14,11 +15,10 @@ import jakarta.validation.constraints.NotNull;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record GenreRecord(@NotNull Long id, UUID gid , String name) 
+public record GenreRecord
+(@NotNull Long id, UUID gid , String name) 
 implements 
-IdEntity<Long> , 
-GidEntity<UUID>,
-NameEntity<String>{
+GenreEntity{
 	
 	@JsonCreator
 	public GenreRecord(@JsonProperty("id") Long id,
