@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="genre")
 public class Genre 
-extends BaseEntity<Genre,Long>
+extends NameBaseEntity<Genre,Long>
 implements 
 MutableIdEntity<Long>,
 MutableGidEntity<UUID>,
@@ -28,10 +28,6 @@ MutableNameEntity<String>{
 
 	@Column(name="gid")
 	private UUID gid; 
-	
-	@Column(name="genreName",length=1024)
-	private String name;
-
 	
 	public Genre() {
 		super();

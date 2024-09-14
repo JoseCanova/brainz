@@ -12,9 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.nanotek.brainz.base.entity.ArtistType;
-import org.nanotek.brainz.base.repository.BaseRepository;
+import org.nanotek.brainz.base.repository.BaseEntityRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
 
@@ -35,7 +36,8 @@ public class BrainzArtistTypeTest{
 	MapConfigurationBase artistTypeConfiguration;
 	
 	@Autowired
-	BaseRepository<ArtistType,Long> repository;
+	@Qualifier("base")
+	BaseEntityRepository<ArtistType,Long> repository;
 	
 	@BeforeEach
 	public void loadMap() {

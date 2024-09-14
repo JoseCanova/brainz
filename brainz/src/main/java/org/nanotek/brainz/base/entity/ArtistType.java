@@ -19,12 +19,10 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="artist_type")
 public class ArtistType 
-extends BaseEntity<ArtistType,Long>
+extends NameBaseEntity<ArtistType,Long>
 implements
 MutableArtistTypeEntity{
 
-	@Column(name="name")
-	private String name;
 	@Column(name="parent")
 	private Long parent;
 	@Column(name="description",length=2048)

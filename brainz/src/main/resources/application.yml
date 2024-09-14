@@ -7,9 +7,6 @@ spring:
     username=sa
     password=
     jpa.hibernate.ddl-auto=create
-  shell:
-    interactive:
-      enabled:true
     
 area: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
