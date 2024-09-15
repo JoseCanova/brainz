@@ -1,12 +1,15 @@
 spring:
   application:
     name=brainz
+  jpa:
+    show-sql: true
   datasource:
     driver-class-name=org.hsqldb.jdbc.JDBCDriver
     url=jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
     username=sa
     password=
-    jpa.hibernate.ddl-auto=create
+    jpa.hibernate.ddl-auto=create-drop
+    jpa.hibernate.format_sql=true
     
 area: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
@@ -70,7 +73,18 @@ artisttype:
     childOrder: 3
     description: 4
     gid: 5
-  
+
+artistaliastype: 
+  fileLocation: /home/jose/Downloads/mbdump/mbdump
+  fileName: artist_alias_type
+  immutable: org.nanotek.brainz.base.record.ArtistAliasTypeRecord
+  delegateMap:   
+    typeId: 0
+    typeName: 1
+    parent: 2
+    childOrder: 3
+    description: 4
+    gid: 5   
     
 fileconfig:
   area:
@@ -109,6 +123,18 @@ fileconfig:
       childOrder: 3
       description: 4
       gid: 5
+  artistaliastype: 
+    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileName: artist_alias_type
+    immutable: org.nanotek.brainz.base.record.ArtistAliasTypeRecord
+    delegateMap:   
+      typeId: 0
+      typeName: 1
+      parent: 2
+      childOrder: 3
+      description: 4
+      gid: 5   
+  
       
-      
+          
        
