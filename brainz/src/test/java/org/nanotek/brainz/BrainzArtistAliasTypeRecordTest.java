@@ -1,7 +1,6 @@
 package org.nanotek.brainz;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 import java.util.Map;
@@ -15,6 +14,8 @@ import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import reactor.core.publisher.Flux;
 
 @SpringBootTest
@@ -24,6 +25,9 @@ class BrainzArtistAliasTypeRecordTest {
 	List<MapConfigurationBase> fileConfiguration;
 	
 	MapConfigurationBase configuration;
+	
+	@Autowired
+	ObjectMapper objectMapper;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -43,6 +47,7 @@ class BrainzArtistAliasTypeRecordTest {
 		Flux.fromStream(stream)
 		.map(s ->s.split("\t"))
 		.map(sary ->mapToMap(sary))
+		.map(m -> objectMapper.convertValue(m , configuration.getImmutable()))
 		.subscribe(r -> System.err.println(r));
 //		fail("Not yet implemented");
 	}
