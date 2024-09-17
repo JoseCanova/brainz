@@ -48,6 +48,13 @@ public class BrainzConfig {
 	}
 	
 	@Bean
+	@ConfigurationProperties(value = "artistaliastype")
+	@Qualifier(value="artist_alias_ype")
+	public MapConfigurationBase mapArtistAliasTypeConfigurationBase() {
+		return new MapConfigurationBase();
+	}
+	
+	@Bean
 	public ObjectMapper getObjectMapper() {
 		return new ObjectMapper();
 	}
