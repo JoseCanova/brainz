@@ -3,7 +3,6 @@ package org.nanotek.brainz.base.entity;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.nanotek.brainz.base.Base;
 import org.nanotek.brainz.base.entity.mutable.MutableArtistTypeEntity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

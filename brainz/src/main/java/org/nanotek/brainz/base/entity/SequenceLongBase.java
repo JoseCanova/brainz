@@ -8,6 +8,7 @@ import org.nanotek.brainz.base.Base;
 import org.nanotek.brainz.base.entity.immutables.BaseSequenceLongBaseEntity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -21,11 +22,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.groups.Default;
 
 @MappedSuperclass
-@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class)
+//@JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class)
 @JsonInclude(Include.NON_EMPTY)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SequenceLongBase
-<K extends SequenceLongBase<K,ID>, ID extends Serializable>
-implements  BaseSequenceLongBaseEntity<K, ID>{
+<ID extends Serializable>
+implements  BaseSequenceLongBaseEntity<SequenceLongBase<ID>, ID>{
 
 	private static final long serialVersionUID = 1932266128563675834L;
 	
@@ -38,6 +40,7 @@ implements  BaseSequenceLongBaseEntity<K, ID>{
 	protected ID id;
 
 	public SequenceLongBase() {
+		super();
 	}
 	
 	public SequenceLongBase(ID id) {
@@ -53,7 +56,7 @@ implements  BaseSequenceLongBaseEntity<K, ID>{
 	}
 	
 	@Override
-	public int compareTo(K to) {
+	public int compareTo(SequenceLongBase<ID> to) {
 		return withUUID().compareTo(to.withUUID());
 	}
 	
@@ -61,8 +64,8 @@ implements  BaseSequenceLongBaseEntity<K, ID>{
 	public boolean equals(Object obj) {
 			boolean b = Optional.ofNullable(obj).isPresent();
 			if (b) {
-				Base theBase = this.getClass().cast(obj);
-				return this.compareTo((K) theBase) == 0;}
+				SequenceLongBase<ID> theBase = this.getClass().cast(obj);
+				return this.compareTo(theBase) == 0;}
 			return false;
 	}
 	

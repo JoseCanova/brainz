@@ -6,12 +6,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.nanotek.beans.entity.BrainzBaseEntity;
+import org.nanotek.brainz.base.entity.BaseEntity;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD,ElementType.METHOD})
 @Documented
 public @interface BrainzKey {
-	Class<? extends BrainzBaseEntity> entityClass();
+	Class<? extends BaseEntity> entityClass();
 	String pathName();
 }

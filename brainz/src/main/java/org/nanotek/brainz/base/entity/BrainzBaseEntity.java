@@ -1,13 +1,11 @@
 package org.nanotek.brainz.base.entity;
 
-import javax.persistence.MappedSuperclass;
 
-import org.nanotek.entities.BaseBrainzEntity;
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class BrainzBaseEntity<K extends BrainzBaseEntity<K>> 
-extends SequenceLongBase<K, Long> 
-implements BaseBrainzEntity<K>
+extends SequenceLongBase<Long> 
 {
 
 	private static final long serialVersionUID = -8896061351986644230L;

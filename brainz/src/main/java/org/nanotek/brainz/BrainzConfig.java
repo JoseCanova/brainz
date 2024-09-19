@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.nanotek.brainz.base.MapConfigurationBase;
+import org.nanotek.brainz.util.JacksonInstanceConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -54,9 +55,16 @@ public class BrainzConfig {
 		return new MapConfigurationBase();
 	}
 	
+	
+	//TODO:remove from tests injection of ObjectMapper and substitute by the instanceConverter.
 	@Bean
 	public ObjectMapper getObjectMapper() {
 		return new ObjectMapper();
+	}
+	
+	@Bean
+	public InstanceConverter instanceConverter() {
+		return new JacksonInstanceConverter(new ObjectMapper());
 	}
 	
 	@Bean

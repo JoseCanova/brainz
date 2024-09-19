@@ -10,11 +10,10 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.MapConfigurationBase;
+import org.nanotek.brainz.base.entity.ArtistAliasType;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import reactor.core.publisher.Flux;
 
@@ -26,8 +25,9 @@ class BrainzArtistAliasTypeRecordTest {
 	
 	MapConfigurationBase configuration;
 	
+	
 	@Autowired
-	ObjectMapper objectMapper;
+	InstanceConverter converter;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -47,7 +47,8 @@ class BrainzArtistAliasTypeRecordTest {
 		Flux.fromStream(stream)
 		.map(s ->s.split("\t"))
 		.map(sary ->mapToMap(sary))
-		.map(m -> objectMapper.convertValue(m , configuration.getImmutable()))
+		.map(m -> converter.convertValue(m , configuration.getImmutable()))
+		.map(m -> converter.convertValue(m, ArtistAliasType.class))
 		.subscribe(r -> System.err.println(r));
 //		fail("Not yet implemented");
 	}
