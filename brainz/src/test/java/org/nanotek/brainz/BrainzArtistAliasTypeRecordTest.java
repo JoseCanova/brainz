@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.nanotek.brainz.base.entity.ArtistAliasType;
+import org.nanotek.brainz.base.repository.ArtistAliasTypeRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +27,8 @@ class BrainzArtistAliasTypeRecordTest {
 	
 	MapConfigurationBase configuration;
 	
+	@Autowired
+	ArtistAliasTypeRepository repository;
 	
 	@Autowired
 	InstanceConverter converter;
@@ -49,7 +53,12 @@ class BrainzArtistAliasTypeRecordTest {
 		.map(sary ->mapToMap(sary))
 		.map(m -> converter.convertValue(m , configuration.getImmutable()))
 		.map(m -> converter.convertValue(m, ArtistAliasType.class))
+		.map(at -> repository.save(at))
 		.subscribe(r -> System.err.println(r));
+		
+		Optional<?> theOptional = repository.findByTypeName("Search hint");
+		theOptional
+		.ifPresentOrElse(tn -> System.err.println(tn), RuntimeException::new);
 //		fail("Not yet implemented");
 	}
 	

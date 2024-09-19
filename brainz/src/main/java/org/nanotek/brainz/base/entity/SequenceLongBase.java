@@ -4,20 +4,18 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.nanotek.brainz.base.Base;
 import org.nanotek.brainz.base.entity.immutables.BaseSequenceLongBaseEntity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.groups.Default;
 
@@ -35,8 +33,8 @@ implements  BaseSequenceLongBaseEntity<SequenceLongBase<ID>, ID>{
 	@org.springframework.data.annotation.Id
 	@NotNull(groups = {Default.class})
 	@Column(name="id",nullable=false,unique=true)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)//,generator="sequence_id_seq")
-	//@SequenceGenerator(name = "sequence_id_seq", sequenceName = "sequence_id_seq",allocationSize = 1, initialValue= 1)
+	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="sequence_id_seq")
+	@SequenceGenerator(name = "sequence_id_seq", sequenceName = "sequence_id_seq",allocationSize = 1, initialValue= 1)
 	protected ID id;
 
 	public SequenceLongBase() {

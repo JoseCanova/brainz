@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArtistTypeRepository extends JpaRepository<ArtistType, Long> {
+
 }
