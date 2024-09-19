@@ -1,12 +1,13 @@
 package org.nanotek.brainz.base.repository.accessor;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import org.nanotek.brainz.base.entity.immutables.TypeNameEntity;
 
-public interface TypeNameAccessor{
+public interface TypeNameAccessor<K extends Serializable>{
 
-	<S extends TypeNameEntity<?>> Optional<S> findByTypeName(String typeName);
+	<S extends TypeNameEntity<K>> Optional<S> findByTypeName(K typeName);
 
  	
 }

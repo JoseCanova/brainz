@@ -59,6 +59,13 @@ class BrainzArtistAliasTypeRecordTest {
 		Optional<?> theOptional = repository.findByTypeName("Search hint");
 		theOptional
 		.ifPresentOrElse(tn -> System.err.println(tn), RuntimeException::new);
+		
+		Optional<?> theIdOptional = repository.findByTypeId(3L);
+		
+		theIdOptional
+		.ifPresentOrElse(tn -> System.err.println(tn), RuntimeException::new);
+		
+		
 //		fail("Not yet implemented");
 	}
 	
