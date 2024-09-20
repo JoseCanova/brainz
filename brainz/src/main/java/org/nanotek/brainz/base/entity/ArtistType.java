@@ -17,10 +17,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="artist_type")
 public class ArtistType 
-extends NameBaseEntity<ArtistType,Long>
+extends SequenceLongBase<Long>
 implements
 MutableArtistTypeEntity{
 
+	@Column(name="typeId")
+	private Long typeId;
+	
+	@Column(name="typeName")
+	private String typeName;
+	
 	@Column(name="parent")
 	private Long parent;
 	@Column(name="description",length=2048)
@@ -36,31 +42,31 @@ MutableArtistTypeEntity{
 	@JsonCreator
 	public ArtistType(
 			@JsonProperty("typeId") Long typeId, @JsonProperty("name") String name, @JsonProperty("parent") Long parent, @JsonProperty("description") String description,@JsonProperty("gid")UUID gid) {
-		this.id=typeId;
-		this.name = name;
+		this.typeId=typeId;
+		this.typeName = name;
 		this.parent = parent;
 		this.description=description;
 		this.gid=gid;
 	}
 	
 	@Override
-	public Long id() {
+	public Long typeId() {
 		return this.id;
 	}
 	
 	@Override
-	public Optional<Long> id(Long typeId) {
-		return Optional.of(this.id = typeId);
+	public Optional<Long> typeId(Long typeId) {
+		return Optional.of(this.typeId = typeId);
 	}
 	
 	
 	@Override
-	public String name() {
-		return this.name;
+	public String typeName() {
+		return this.typeName;
 	}
 	@Override
-	public Optional<String> name(String t) {
-		return Optional.of(this.name = t);
+	public Optional<String> typeName(String t) {
+		return Optional.of(this.typeName = t);
 	}
 
 	@Override
@@ -95,7 +101,7 @@ MutableArtistTypeEntity{
 
 	@Override
 	public String toString() {
-		return "ArtistType [typeId=" + id + ", name=" + name + ", parent=" + parent + ", description=" + description
+		return "ArtistType [typeId=" + typeId + ", name=" + typeName + ", parent=" + parent + ", description=" + description
 				+ ", gid=" + gid + "]";
 	}
 	

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.nanotek.brainz.base.entity.ArtistType;
-import org.nanotek.brainz.base.repository.BaseEntityRepository;
+import org.nanotek.brainz.base.repository.ArtistTypeRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,13 +31,12 @@ public class BrainzArtistTypeTest{
 	List<MapConfigurationBase> filesConfiguration;
 	
 	@Autowired
-	ObjectMapper objectMapper;
+	InstanceConverter converter;
 	
 	MapConfigurationBase artistTypeConfiguration;
 	
 	@Autowired
-	@Qualifier("base")
-	BaseEntityRepository<ArtistType,Long> repository;
+	ArtistTypeRepository repository;
 	
 	@BeforeEach
 	public void loadMap() {
@@ -60,9 +59,10 @@ public class BrainzArtistTypeTest{
 		Flux.fromStream(fileStream)
 		.map(s -> s.split("\t"))
 		.map(sary -> mapToMap(sary))
-		.map(m -> objectMapper.convertValue(m , ArtistType.class))
+		.map(m -> converter.convertValue(m , artistTypeConfiguration.getImmutable()))
+		.map(m -> converter.convertValue(m, ArtistType.class))
 		.subscribe(at -> repository.save(at));
-		List result = repository.findAll(Example.of(new ArtistType()));
+		List result = repository.findAll();
 		assertTrue(result.size()>1);
 		Flux.fromIterable(result)
 		.subscribe(at -> System.out.println(at.toString()));

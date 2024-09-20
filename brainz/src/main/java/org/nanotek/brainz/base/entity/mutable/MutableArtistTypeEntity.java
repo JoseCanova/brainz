@@ -6,8 +6,8 @@ import org.nanotek.brainz.base.entity.immutables.ArtistTypeEntity;
 
 public interface MutableArtistTypeEntity 
 extends ArtistTypeEntity , 
-MutableIdEntity<Long>,
-MutableNameEntity<String>,
+MutableTypeIdEntity<Long>,
+MutableTypeNameEntity<String>,
 MutableParentEntity<Long>,
 MutableDescriptionEntity<String>,
 MutableGidEntity<UUID>{

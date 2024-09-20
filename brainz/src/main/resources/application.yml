@@ -65,7 +65,7 @@ genre:
 artisttype: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: artist_type
-  immutable: org.nanotek.brainz.base.entity.ArtistType
+  immutable: org.nanotek.brainz.base.record.ArtistTypeRecord
   delegateMap:   
     typeId: 0
     name: 1
@@ -115,7 +115,7 @@ fileconfig:
   artisttype: 
     fileLocation: /home/jose/Downloads/mbdump/mbdump
     fileName: artist_type
-    immutable: org.nanotek.brainz.base.entity.ArtistType
+    immutable: org.nanotek.brainz.base.record.ArtistTypeRecord
     delegateMap:     
       typeId: 0
       name: 1

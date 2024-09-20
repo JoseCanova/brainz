@@ -10,14 +10,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record ArtistTypeRecord
-(Long id,String name,Long parent,String description,UUID gid) 
+(Long typeId,String typeName,Long parent,String description,UUID gid) 
 implements ArtistTypeEntity{
 
 	@JsonCreator
 	public ArtistTypeRecord(
-			@JsonProperty("typeId") Long id, @JsonProperty("name") String name, @JsonProperty("parent") Long parent, @JsonProperty("description") String description,@JsonProperty("gid")UUID gid) {
-		this.id=id;
-		this.name = name;
+			@JsonProperty("typeId") Long typeId, 
+			@JsonProperty("name") String typeName, 
+			@JsonProperty("parent") Long parent, 
+			@JsonProperty("description") String description,
+			@JsonProperty("gid")UUID gid) {
+		this.typeId=typeId;
+		this.typeName = typeName;
 		this.parent = parent;
 		this.description=description;
 		this.gid=gid;
