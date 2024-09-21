@@ -57,6 +57,7 @@ implements MutableArtistAliasTypeEntity
 	}
 
 	@Override
+	@JsonProperty(value = "typeId") 
 	public Long typeId() {
 		return this.typeId;
 	}
@@ -67,6 +68,7 @@ implements MutableArtistAliasTypeEntity
 	}
 
 	@Override
+	@JsonProperty(value = "typeName") 
 	public String typeName() {
 		return this.typeName;
 	}
@@ -77,6 +79,7 @@ implements MutableArtistAliasTypeEntity
 	}
 
 	@Override
+	@JsonProperty(value = "parent") 
 	public Long parent() {
 		return this.parent;
 	}
@@ -87,6 +90,7 @@ implements MutableArtistAliasTypeEntity
 	}
 
 	@Override
+	@JsonProperty(value = "childOrder") 
 	public Long childOrder() {
 		return this.childOrder;
 	}
@@ -97,6 +101,7 @@ implements MutableArtistAliasTypeEntity
 	}
 
 	@Override
+	@JsonProperty(value = "description") 
 	public String description() {
 		return this.description;
 	}
@@ -107,6 +112,7 @@ implements MutableArtistAliasTypeEntity
 	}
 
 	@Override
+	@JsonProperty(value = "gid") 
 	public UUID gid() {
 		return this.gid;
 	}

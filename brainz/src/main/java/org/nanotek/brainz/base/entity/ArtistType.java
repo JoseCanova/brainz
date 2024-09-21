@@ -29,6 +29,7 @@ MutableArtistTypeEntity{
 	
 	@Column(name="parent")
 	private Long parent;
+	
 	@Column(name="description",length=2048)
 	private String description;
 	@Column(name="gid")

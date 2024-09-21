@@ -1,6 +1,9 @@
 spring:
   application:
     name=brainz
+  shell:
+    interactive:
+        enabled: true
   jpa:
     show-sql: true
   datasource:
@@ -69,7 +72,7 @@ artisttype:
   baseClass: org.nanotek.brainz.base.entity.ArtistType
   delegateMap:   
     typeId: 0
-    name: 1
+    typeName: 1
     parent: 2
     childOrder: 3
     description: 4
@@ -121,7 +124,7 @@ fileconfig:
     baseClass: org.nanotek.brainz.base.entity.ArtistType
     delegateMap:     
       typeId: 0
-      name: 1
+      typeName: 1
       parent: 2
       childOrder: 3
       description: 4

@@ -16,7 +16,7 @@ implements ArtistTypeEntity{
 	@JsonCreator
 	public ArtistTypeRecord(
 			@JsonProperty("typeId") Long typeId, 
-			@JsonProperty("name") String typeName, 
+			@JsonProperty("typeName") String typeName, 
 			@JsonProperty("parent") Long parent, 
 			@JsonProperty("description") String description,
 			@JsonProperty("gid")UUID gid) {
