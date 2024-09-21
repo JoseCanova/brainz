@@ -41,7 +41,11 @@ MutableArtistTypeEntity{
 
 	@JsonCreator
 	public ArtistType(
-			@JsonProperty("typeId") Long typeId, @JsonProperty("name") String name, @JsonProperty("parent") Long parent, @JsonProperty("description") String description,@JsonProperty("gid")UUID gid) {
+			@JsonProperty("typeId") Long typeId, 
+			@JsonProperty("typeName") String name,
+			@JsonProperty("parent") Long parent, 
+			@JsonProperty("description") String description,
+			@JsonProperty("gid")UUID gid) {
 		this.typeId=typeId;
 		this.typeName = name;
 		this.parent = parent;
@@ -50,6 +54,7 @@ MutableArtistTypeEntity{
 	}
 	
 	@Override
+	@JsonProperty("typeId")
 	public Long typeId() {
 		return this.id;
 	}
@@ -61,6 +66,7 @@ MutableArtistTypeEntity{
 	
 	
 	@Override
+	@JsonProperty("typeName")
 	public String typeName() {
 		return this.typeName;
 	}
@@ -70,6 +76,7 @@ MutableArtistTypeEntity{
 	}
 
 	@Override
+	@JsonProperty("parent") 
 	public Long parent() {
 		return this.parent;
 	}
@@ -80,6 +87,7 @@ MutableArtistTypeEntity{
 	}
 
 	@Override
+	@JsonProperty("description") 
 	public String description() {
 		return this.description;
 	}
@@ -90,6 +98,7 @@ MutableArtistTypeEntity{
 	}
 
 	@Override
+	@JsonProperty("gid") 
 	public UUID gid() {
 		return this.gid;
 	}
