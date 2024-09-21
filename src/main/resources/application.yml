@@ -1,0 +1,15 @@
+spring:
+  application:
+    name=brainz
+  shell:
+    interactive:
+      enabled: true
+  jpa:
+    show-sql: true
+  datasource:
+    driver-class-name=org.hsqldb.jdbc.JDBCDriver
+    url=jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
+    username=sa
+    password=
+    jpa.hibernate.ddl-auto=create-drop
+    jpa.hibernate.format_sql=true
