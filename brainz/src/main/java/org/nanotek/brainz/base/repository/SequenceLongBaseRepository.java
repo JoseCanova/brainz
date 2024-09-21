@@ -1,7 +1,5 @@
 package org.nanotek.brainz.base.repository;
 
-import java.io.Serializable;
-
 import org.nanotek.brainz.base.entity.SequenceLongBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

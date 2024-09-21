@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.nanotek.brainz.base.entity.immutables.BaseSequenceLongBaseEntity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -29,6 +30,7 @@ implements  BaseSequenceLongBaseEntity<SequenceLongBase<ID>, ID>{
 
 	private static final long serialVersionUID = 1932266128563675834L;
 	
+	@JsonIgnore
 	@Id
 	@org.springframework.data.annotation.Id
 	@NotNull(groups = {Default.class})

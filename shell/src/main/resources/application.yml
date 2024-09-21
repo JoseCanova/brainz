@@ -82,6 +82,7 @@ artistaliastype:
   fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: artist_alias_type
   immutable: org.nanotek.brainz.base.record.ArtistAliasTypeRecord
+  baseClass: org.nanotek.brainz.base.entity.ArtistAliasType
   delegateMap:   
     typeId: 0
     typeName: 1
@@ -132,6 +133,7 @@ fileconfig:
     fileLocation: /home/jose/Downloads/mbdump/mbdump
     fileName: artist_alias_type
     immutable: org.nanotek.brainz.base.record.ArtistAliasTypeRecord
+    baseClass: org.nanotek.brainz.base.entity.ArtistAliasType
     delegateMap:   
       typeId: 0
       typeName: 1
