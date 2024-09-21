@@ -8,7 +8,9 @@ import java.util.stream.Stream;
 import org.nanotek.brainz.InstanceConverter;
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.nanotek.brainz.base.entity.ArtistType;
+import org.nanotek.brainz.base.entity.SequenceLongBase;
 import org.nanotek.brainz.base.repository.ArtistTypeRepository;
+import org.nanotek.brainz.base.repository.SequenceLongBaseRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class BaseShellComponent implements InitializingBean{
 	
 	@Autowired
 	ArtistTypeRepository repository;
+	
+	@Autowired
+	SequenceLongBaseRepository<SequenceLongBase<Long>> repository2;
 	
 	@Autowired
 	List<MapConfigurationBase> filesConfiguration;
@@ -51,8 +56,8 @@ public class BaseShellComponent implements InitializingBean{
 		.map(s -> s.split("\t"))
 		.map(sary -> mapToMap(sary))
 		.map(m -> converter.convertValue(m , artistTypeConfiguration.getImmutable()))
-		.map(m -> converter.convertValue(m, ArtistType.class))
-		.subscribe(at -> repository.save(at));
+		.map(m -> converter.convertValue(m, artistTypeConfiguration.getBaseClass()))
+		.subscribe(at -> repository2.save(at));
 		
 		return "finished";
 	}

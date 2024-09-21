@@ -8,12 +8,14 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import org.nanotek.brainz.base.entity.SequenceLongBase;
+
 public class MapConfigurationBase implements Base<MapConfigurationBase> {
 
 	private String fileLocation;
 	private String  fileName;
 	private Class<?> immutable;
-	private Class<? extends Base<?>> baseClass;
+	private Class<? extends   SequenceLongBase<Long> > baseClass;
 	
 	
 	public String getFileLocation() {
@@ -157,11 +159,11 @@ public class MapConfigurationBase implements Base<MapConfigurationBase> {
 		return delegateMap.merge(key, value, remappingFunction);
 	}
 
-	public Class<? extends Base<?>> getBaseClass() {
+	public Class<? extends  SequenceLongBase<Long> > getBaseClass() {
 		return baseClass;
 	}
 
-	public void setBaseClass(Class<? extends Base<?>> baseClass) {
+	public void setBaseClass(Class<? extends   SequenceLongBase<Long> >  baseClass) {
 		this.baseClass = baseClass;
 	}
 	
