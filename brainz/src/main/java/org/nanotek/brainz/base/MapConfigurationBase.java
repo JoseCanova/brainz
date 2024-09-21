@@ -13,6 +13,8 @@ public class MapConfigurationBase implements Base<MapConfigurationBase> {
 	private String fileLocation;
 	private String  fileName;
 	private Class<?> immutable;
+	private Class<? extends Base<?>> baseClass;
+	
 	
 	public String getFileLocation() {
 		return fileLocation;
@@ -153,6 +155,14 @@ public class MapConfigurationBase implements Base<MapConfigurationBase> {
 	public Integer merge(String key, Integer value,
 			BiFunction<? super Integer, ? super Integer, ? extends Integer> remappingFunction) {
 		return delegateMap.merge(key, value, remappingFunction);
+	}
+
+	public Class<? extends Base<?>> getBaseClass() {
+		return baseClass;
+	}
+
+	public void setBaseClass(Class<? extends Base<?>> baseClass) {
+		this.baseClass = baseClass;
 	}
 	
 	
