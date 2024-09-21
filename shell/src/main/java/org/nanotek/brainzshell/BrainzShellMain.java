@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.shell.command.annotation.CommandScan;
 import org.springframework.shell.jline.PromptProvider;
 
-
+ 
 @SpringBootApplication
 @Configuration
 @ComponentScan(basePackages = {"org.nanotek" , "org.nanotek.brainz","org.nanotek.brainzshell"})

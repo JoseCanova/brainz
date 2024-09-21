@@ -1,4 +1,4 @@
-package org.nanotek.brainzshell;
+package org.nanotek.shell.components;
 
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
