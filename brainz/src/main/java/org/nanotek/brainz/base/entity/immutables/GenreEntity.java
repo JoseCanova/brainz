@@ -3,8 +3,9 @@ package org.nanotek.brainz.base.entity.immutables;
 import java.util.UUID;
 
 public interface GenreEntity
-extends IdEntity<Long> , 
+extends 
+GenreIdEntity<Long> , 
 GidEntity<UUID>,
-NameEntity<String>{
+GenreNameEntity<String>{
 
 }

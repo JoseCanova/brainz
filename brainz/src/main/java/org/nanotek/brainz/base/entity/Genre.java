@@ -4,9 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.nanotek.brainz.base.entity.mutable.MutableGidEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableIdEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableNameEntity;
+import org.nanotek.brainz.base.entity.mutable.MutableGenreEntity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,12 +18,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="genre")
 public class Genre 
-extends NameBaseEntity<Genre,Long>
-implements 
-MutableIdEntity<Long>,
-MutableGidEntity<UUID>,
-MutableNameEntity<String>{
+extends SequenceLongBase<Long>
+implements MutableGenreEntity
+{
 
+	@Column(name="genreId")
+	private Long genreId;
+	
+	@Column(name="genreName")
+	private String genreName;
+	
 	@Column(name="gid")
 	private UUID gid; 
 	
@@ -34,22 +36,24 @@ MutableNameEntity<String>{
 	}
 	
 	@JsonCreator
-	public Genre(@JsonProperty("id") Long id,
+	public Genre(@JsonProperty("genreId") Long id,
 			@JsonProperty("gid")UUID gid,
-			@JsonProperty("name")String name) {
-		this.id = id;
+			@JsonProperty("genreName")String name) {
+		this.genreId = id;
 		this.gid=gid;
-		this.name=name;
+		this.genreName=name;
 	}
 
-	public Long id() {
-		return this.id;
+	@JsonProperty("genreId") 
+	public Long genreId() {
+		return this.genreId;
 	}
 	
-	public Optional<Long> id(Long id){
-		return Optional.of(this.id = id);
+	public Optional<Long> genreId(Long genreId){
+		return Optional.of(this.genreId = genreId);
 	}
 	
+	@JsonProperty("gid") 
 	public UUID gid() {
 		return gid;
 	}
@@ -57,18 +61,19 @@ MutableNameEntity<String>{
 	public Optional<UUID> gid(UUID gid){
 		return Optional.of(this.gid = gid);
 	}
-	
-	public String name() {
-		return this.name;
+
+	@JsonProperty("genreName") 
+	public String genreName() {
+		return this.genreName;
 	}
 	
-	public Optional<String> name(String name){
-		return Optional.of(this.name=name);
+	public Optional<String> genreName(String genreName){
+		return Optional.of(this.genreName=genreName);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(gid, id, name);
+		return Objects.hash(gid, genreId, genreName);
 	}
 
 	@Override
@@ -80,12 +85,12 @@ MutableNameEntity<String>{
 		if (getClass() != obj.getClass())
 			return false;
 		Genre other = (Genre) obj;
-		return Objects.equals(gid, other.gid) && Objects.equals(id, other.id) && Objects.equals(name, other.name);
+		return Objects.equals(gid, other.gid) && Objects.equals(genreId, other.genreId) && Objects.equals(genreName, other.genreName);
 	}
 
 	@Override
 	public String toString() {
-		return "Genre [id=" + id + ", gid=" + gid + ", name=" + name + "]";
+		return "Genre [id=" + id + ", gid=" + gid + ", name=" + genreName + "]";
 	}
 	
 	

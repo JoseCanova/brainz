@@ -14,16 +14,16 @@ import jakarta.validation.constraints.NotNull;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record GenreRecord
-(@NotNull Long id, @NotNull UUID gid , @NotEmpty String name) 
+(@NotNull Long genreId, @NotNull UUID gid , @NotEmpty String genreName) 
 implements 
 GenreEntity{
 	
 	@JsonCreator
-	public GenreRecord(@JsonProperty("id") Long id,
+	public GenreRecord(@JsonProperty("id") Long genreId,
 			@JsonProperty("gid")UUID gid,
-			@JsonProperty("name")String name) {
-		this.id = id;
+			@JsonProperty("genreName")String genreName) {
+		this.genreId = genreId;
 		this.gid=gid;
-		this.name=name;
+		this.genreName=genreName;
 	}
 }

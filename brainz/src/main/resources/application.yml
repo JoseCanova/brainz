@@ -1,9 +1,6 @@
 spring:
   application:
     name=brainz
-  shell:
-    interactive:
-        enabled: true
   jpa:
     show-sql: true
   datasource:
@@ -61,9 +58,9 @@ genre:
   fileName: genre
   immutable: org.nanotek.brainz.base.record.GenreRecord
   delegateMap:
-    id: 0
+    genreId: 0
     gid: 1
-    name: 2
+    genreName: 2
 
 artisttype: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
@@ -114,9 +111,9 @@ fileconfig:
     fileName: genre
     immutable: org.nanotek.brainz.base.record.GenreRecord
     delegateMap:
-      id: 0
+      genreId: 0
       gid: 1
-      name: 2
+      genreName: 2
   artisttype: 
     fileLocation: /home/jose/Downloads/mbdump/mbdump
     fileName: artist_type

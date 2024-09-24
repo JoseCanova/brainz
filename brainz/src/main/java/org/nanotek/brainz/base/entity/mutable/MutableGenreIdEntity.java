@@ -2,7 +2,8 @@ package org.nanotek.brainz.base.entity.mutable;
 
 import java.util.Optional;
 
-public interface MutableNameEntity<T> {
+public interface MutableGenreIdEntity<T> {
 
-	Optional<T> name(T t);
+	Optional<T> genreId(T genreId);
+	
 }

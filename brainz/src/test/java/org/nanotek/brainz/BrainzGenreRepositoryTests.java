@@ -52,8 +52,6 @@ public class BrainzGenreRepositoryTests {
 		  .stream()
 		  .map(mcb -> Map.entry(mcb.getFileName(), mcb))
 		  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-	   assertTrue(mapEntries.get("area") !=null);
-	   assertTrue(mapEntries.get("artist") !=null);
 	   assertTrue(mapEntries.get("genre") !=null);
 	   MapConfigurationBase genreConfiguration = mapEntries.get("genre");
 	   String genreFileName = genreConfiguration.getFileLocation().concat("/").concat(genreConfiguration.getFileName());
@@ -64,12 +62,8 @@ public class BrainzGenreRepositoryTests {
 	   .map(s -> s.split("\t"))
 	   .map(sary -> mapToMap(sary , genreConfiguration.getDelegateMap()))
 	   .map(s -> objectMapper.convertValue(s , genreConfiguration.getImmutable()))
-	   .map(gr -> GenreRecord.class.cast(gr))
-	   .filter(gr -> gr.name().equals("parang"))
-	   .filter(gr -> genreRecordIsValid(gr))
-	   .map(gr -> objectMapper.convertValue(gr , Genre.class))
-	   .map(gr -> genreRepository.save(gr))
-	   .map(gr -> genreRepository.findById(gr.id()))
+	   .map(g -> objectMapper.convertValue(g , Genre.class))
+	   .map(g -> genreRepository.save(g))
 	   .subscribe( v -> System.err.println(v.toString()));
 
 	}

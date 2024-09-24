@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface GenreRepository
 extends JpaRepository<Genre,Long>{
 	
-	Collection<GenreRecord> findByName(String name);
+	Collection<GenreRecord> findByGenreName(String name);
 }
