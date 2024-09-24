@@ -2,11 +2,11 @@ package org.nanotek.brainz.base.entity;
 
 import java.util.Optional;
 
-import org.nanotek.brainz.base.Base;
-import org.nanotek.brainz.base.entity.mutable.MutableArtistIdEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableArtistNameEntity;
+import org.nanotek.brainz.base.entity.mutable.MutableArtistEntity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,11 +17,11 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="artist")
 public class Artist 
-implements Base<Artist>,
-MutableArtistIdEntity<Long>,
-MutableArtistNameEntity<String>{
+extends SequenceLongBase<Long>
+implements 
+MutableArtistEntity{
 
-	@Id
+	@Column(name="artistId")
 	private Long artistId;
 	
 	@Column(name="artistName")
@@ -31,12 +31,15 @@ MutableArtistNameEntity<String>{
 		super();
 	}
 	
-	public Artist(Long artistId, String artistName) {
+	@JsonCreator
+	public Artist(@JsonProperty(value="artistId") Long artistId, 
+			@JsonProperty(value="artistName") String artistName) {
 		super();
 		this.artistId = artistId;
 		this.artistName = artistName;
 	}
 
+	@JsonProperty(value="artistId")
 	@Override
 	public Long artistId() {
 		return artistId;
@@ -47,13 +50,14 @@ MutableArtistNameEntity<String>{
 		return Optional.of(this.artistId=artistId);
 	}
 
+	@JsonProperty(value="artistName")
 	@Override
 	public String artistName() {
 		return this.artistName;
 	}
 
 	@Override
-	public Optional<String> artistNameEntity(String artistName) {
+	public Optional<String> artistName(String artistName) {
 		return Optional.of(this.artistName = artistName);
 	}
 	
