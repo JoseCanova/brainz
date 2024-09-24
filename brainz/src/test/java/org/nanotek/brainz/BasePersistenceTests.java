@@ -3,6 +3,7 @@ package org.nanotek.brainz;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.nanotek.brainz.base.entity.Area;
@@ -17,14 +18,14 @@ public class BasePersistenceTests {
 	
 	@Test
     public void whenFindingCustomerById_thenCorrect() {
-		areaRepository.save(new Area(1000L , "John"));
-		Optional<Area> optArea = areaRepository.findById(1000L);
+		areaRepository.save(new Area(1000L , UUID.randomUUID(), "John"));
+		Optional<Area> optArea = areaRepository.findByAreaId(1000L);
         assertTrue(optArea.isPresent());
         optArea.ifPresent(a -> System.err.println(a.toString()));
         optArea.ifPresent(a -> {a.areaName("John 1");
         areaRepository.save(a);
         });
-        Optional<Area> optArea2 = areaRepository.findById(1000L);
+        Optional<Area> optArea2 = areaRepository.findByAreaId(1000L);
         Area newArea = optArea2.get();
         assertTrue(newArea.areaName().equals("John 1"));
     }

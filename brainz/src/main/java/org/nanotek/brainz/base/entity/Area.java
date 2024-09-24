@@ -5,9 +5,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.nanotek.brainz.base.entity.mutable.MutableAreaEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableAreaIdEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableAreaNameEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableGidEntity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,33 +14,32 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="area")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Area implements
+public class Area 
+extends SequenceLongBase<Long>
+implements
 MutableAreaEntity{
 
+	@Column(name="areaId")
 	private Long areaId; 
 	
+	@Column(name="gid")
 	private  UUID gid;
 	
+	@Column(name="areaName")
 	private String areaName;
 	
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss[.SSSSSS][.SSSSS][.SSSS][.SSS][.SS][.S]+00")
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime lastUpdated;
 	
 	@Override
 	public String toString() {
-		return "Area [areaId=" + areaId + ", gid=" + gid + ", areaName=" + areaName + ", lastUpdated=" + lastUpdated
-				+ "]";
-	}
-
-	public LocalDateTime getLastUpdated() {
-		return lastUpdated;
-	}
-
-	public void setLastUpdated(LocalDateTime lastUpdated) {
-		this.lastUpdated = lastUpdated;
+		return "Area [areaId=" + areaId + ", gid=" + gid + ", areaName=" + areaName + 
+				"]";
 	}
 
 	public Area() {

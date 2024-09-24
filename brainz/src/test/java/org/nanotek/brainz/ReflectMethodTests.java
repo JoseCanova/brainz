@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
+import org.nanotek.brainz.base.entity.Area;
 import org.nanotek.brainz.base.record.AreaRecord;
 
 public class ReflectMethodTests {
