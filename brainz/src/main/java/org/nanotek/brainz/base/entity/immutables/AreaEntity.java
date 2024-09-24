@@ -1,9 +1,9 @@
 package org.nanotek.brainz.base.entity.immutables;
 
-import org.nanotek.brainz.base.entity.mutable.MutableAreaIdEntity;
-import org.nanotek.brainz.base.entity.mutable.MutableAreaNameEntity;
+import java.util.UUID;
 
 public interface AreaEntity extends 
-MutableAreaIdEntity<Long>,
-MutableAreaNameEntity<String>{
+AreaIdEntity<Long>,
+AreaNameEntity<String>,
+GidEntity<UUID>{
 }
