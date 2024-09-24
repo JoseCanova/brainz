@@ -9,7 +9,9 @@ import org.nanotek.brainz.InstanceConverter;
 import org.nanotek.brainz.base.Base;
 import org.nanotek.brainz.base.MapConfigurationBase;
 import org.nanotek.brainz.base.entity.SequenceLongBase;
+import org.nanotek.brainz.base.record.GenreRecord;
 import org.nanotek.brainz.base.repository.ArtistTypeRepository;
+import org.nanotek.brainz.base.repository.GenreRepository;
 import org.nanotek.brainz.base.repository.SequenceLongBaseRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.InitializingBean;
@@ -30,6 +32,9 @@ public class BaseShellComponent implements InitializingBean{
 	ArtistTypeRepository repository;
 	
 	@Autowired
+	GenreRepository genreRepository;
+	
+	@Autowired
 	SequenceLongBaseRepository<SequenceLongBase<Long>> repository2;
 	
 	@Autowired
@@ -37,55 +42,51 @@ public class BaseShellComponent implements InitializingBean{
 	
 	MapConfigurationBase artistTypeConfiguration;
 	
-	Map<String,MapConfigurationBase> theMap;
+	Map<String,MapConfigurationBase> theMapConfigurationBase;
 
 	MapConfigurationBase artistAliasTypeConfiguration;
+	
+	MapConfigurationBase genreConfiguration;
 	
 	@Autowired
 	InstanceConverter converter;
 	
-
-	@ShellMethod(key = "hello-world")
-	public String helloWorld(
-		@ShellOption(defaultValue = "spring") String arg
-	) {
-		return "Hello world " + arg;
-	}
-	
 	@ShellMethod(key = "artist-type")
 	public String loadArtistType() {
-		Stream<String> fileStream = 
-				new NioKongStreamBuilder(artistTypeConfiguration.getFileLocation()
-						.concat("/")
-						.concat(artistTypeConfiguration.getFileName()))
-				.build();
-		Flux.fromStream(fileStream)
-		.map(s -> s.split("\t"))
-		.map(sary -> mapToMap(sary))
-		.map(m -> converter.convertValue(m , artistTypeConfiguration.getImmutable()))
-		.map(m -> converter.convertValue(m, artistTypeConfiguration.getBaseClass()))
-		.subscribe(at -> repository2.save(at));
-		
-		return "finished loading artist type";
+		return populateTableFromFile(artistTypeConfiguration);
 	}
 	
 	@ShellMethod(key = "artist-alias-type")
 	public String loadArtistAliasType() {
+		return populateTableFromFile(artistAliasTypeConfiguration);
+	}
+    
+	
+	private String populateTableFromFile(MapConfigurationBase  mapConfigurationBase) {
 		Stream<String> fileStream = 
-				new NioKongStreamBuilder(artistAliasTypeConfiguration.getFileLocation()
+				new NioKongStreamBuilder(mapConfigurationBase.getFileLocation()
 						.concat("/")
-						.concat(artistAliasTypeConfiguration.getFileName()))
+						.concat(mapConfigurationBase.getFileName()))
 				.build();
 		Flux.fromStream(fileStream)
 		.map(s -> s.split("\t"))
 		.map(sary -> mapToMap(sary))
-		.map(m -> converter.convertValue(m , artistAliasTypeConfiguration.getImmutable()))
-		.map(m -> converter.convertValue(m, artistAliasTypeConfiguration.getBaseClass()))
+		.map(m -> converter.convertValue(m , mapConfigurationBase.getImmutable()))
+		.map(m -> converter.convertValue(m, mapConfigurationBase.getBaseClass()))
 		.subscribe(at -> repository2.save(at));
 		
-		return "finished loading artist  alias type";
+		return "finished loading artist ".concat(mapConfigurationBase.getFileName());
 	}
-    
+	
+	
+	@ShellMethod(key="find-genres")
+	public List<GenreRecord> findGenres(){
+		return genreRepository.findAll()
+							.stream()
+							.map(g -> converter.convertValue(g, GenreRecord.class))
+							.collect(Collectors.toList());
+	}
+	
 	public List<Object>findType(){
 		SequenceLongBase<Long> aliasTypeInstance = Base
 				.newInstance(artistTypeConfiguration.getBaseClass())
@@ -124,14 +125,16 @@ public class BaseShellComponent implements InitializingBean{
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		theMap = filesConfiguration
+		theMapConfigurationBase = filesConfiguration
 				.stream()
 				.map( x -> Map.entry(x.getFileName(), x))
 				.collect(Collectors.toMap(x -> x.getKey(), x ->x.getValue()));
 		
-		artistTypeConfiguration = theMap.get("artist_type");
+		artistTypeConfiguration = theMapConfigurationBase.get("artist_type");
 		
-		artistAliasTypeConfiguration = theMap.get("artist_alias_type");
+		artistAliasTypeConfiguration = theMapConfigurationBase.get("artist_alias_type");
+		
+		genreConfiguration = theMapConfigurationBase.get("genre");
 	}
 	
 	
