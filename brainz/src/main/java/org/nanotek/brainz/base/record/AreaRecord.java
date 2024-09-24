@@ -1,4 +1,4 @@
-package org.nanotek.brainz;
+package org.nanotek.brainz.base.record;
 
 import java.util.UUID;
 
