@@ -59,5 +59,12 @@ MutableArtistEntity{
 	public Optional<String> artistName(String artistName) {
 		return Optional.of(this.artistName = artistName);
 	}
+
+	@Override
+	public String toString() {
+		return "Artist [artistId=" + artistId + ", artistName=" + artistName + "]";
+	}
+	
+	
 	
 }
