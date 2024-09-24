@@ -4,10 +4,9 @@ import java.util.Collection;
 
 import org.nanotek.brainz.base.entity.Genre;
 import org.nanotek.brainz.base.record.GenreRecord;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GenreRepository
-extends JpaRepository<Genre,Long>{
+extends SequenceLongBaseRepository<Genre>{
 	
 	Collection<GenreRecord> findByGenreName(String name);
 }
