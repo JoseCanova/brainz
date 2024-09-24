@@ -33,7 +33,7 @@ area:
 artist:
   fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: artist
-  immutable: org.nanotek.brainz.base.entity.Artist
+  immutable: org.nanotek.brainz.base.record.ArtistRecord
   delegateMap:
     artistId: 0
     gid: 1
@@ -51,7 +51,6 @@ artist:
     comment: 13
     editsPending: 14
     lastUpdated: 15
-    ended: 16
     
 genre:
   fileLocation: /home/jose/Downloads/mbdump/mbdump
@@ -92,15 +91,15 @@ fileconfig:
   area:
     fileLocation: /home/jose/Downloads/mbdump/mbdump
     fileName: area
-    immutable: org.nanotek.brainz.base.entity.Area
+    immutable: org.nanotek.brainz.base.record.AreaRecord
     delegateMap:     
       areaId: 0 
       gid: 1 
       areaName: 2
   artist:
-    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileLocation: /home/jose/Downloads/mbdump/mbdump/artist
     fileName: artist
-    immutable: org.nanotek.brainz.base.entity.Artist
+    immutable: org.nanotek.brainz.base.record.ArtistRecord
     delegateMap:
       artistId: 0
       gid: 1

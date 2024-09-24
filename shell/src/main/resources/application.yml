@@ -34,8 +34,8 @@ area:
     ended: 12 
 
 artist:
-  fileLocation: /home/jose/Downloads/mbdump/mbdump
-  fileName: artist
+  fileLocation: /home/jose/Downloads/mbdump/mbdump/artist_folder
+  fileName: artist_dv
   immutable: org.nanotek.brainz.base.entity.Artist
   delegateMap:
     artistId: 0
@@ -54,7 +54,6 @@ artist:
     comment: 13
     editsPending: 14
     lastUpdated: 15
-    ended: 16
     
 genre:
   fileLocation: /home/jose/Downloads/mbdump/mbdump
@@ -101,7 +100,7 @@ fileconfig:
       gid: 1 
       areaName: 2
   artist:
-    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileLocation: /home/jose/Downloads/mbdump/mbdump/artist
     fileName: artist
     immutable: org.nanotek.brainz.base.entity.Artist
     delegateMap:
