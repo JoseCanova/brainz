@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import org.nanotek.brainz.InstanceConverter;
 import org.nanotek.brainz.base.MapConfigurationBase;
-import org.nanotek.brainz.base.entity.Area;
-import org.nanotek.brainz.base.repository.AreaRepository;
+import org.nanotek.brainz.base.entity.SequenceLongBase;
+import org.nanotek.brainz.base.repository.SequenceLongBaseRepository;
 import org.nanotek.brainz.stream.NioKongStreamBuilder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class AreaService implements InitializingBean{
 	List<MapConfigurationBase> fileConfiguration;
 	
 	@Autowired
-	AreaRepository repository;
+	SequenceLongBaseRepository<SequenceLongBase<Long>> repository;
 
 	private MapConfigurationBase configuration;
 
@@ -56,9 +56,11 @@ public class AreaService implements InitializingBean{
 		.map(s -> s.split("\t"))
 		.map(sary -> mapToMap(sary))
 		.map(m -> converter.convertValue(m , configuration.getImmutable()))
-		.map(im -> converter.convertValue(im, Area.class))
+		.map(im -> converter.convertValue(im, configuration.getBaseClass()))
 		.map(ar -> repository.save(ar))
-		.subscribe(ar -> System.err.println(ar));
+		.subscribe(ar -> {
+			System.err.println(ar.toString());
+		});
 	}
 	
 	
