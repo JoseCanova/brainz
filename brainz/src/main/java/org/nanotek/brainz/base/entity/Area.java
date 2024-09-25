@@ -1,6 +1,7 @@
 package org.nanotek.brainz.base.entity;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import org.nanotek.brainz.base.entity.mutable.MutableAreaEntity;
@@ -9,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,6 +33,8 @@ MutableAreaEntity{
 	@Column(name="areaName")
 	private String areaName;
 	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "area")
+	private Set<Artist> artists;
 	
 	@Override
 	public String toString() {
@@ -77,6 +82,11 @@ MutableAreaEntity{
 
 	public Optional<String> areaName(String areaName) {
 		return Optional.of(this.areaName = areaName);
+	}
+	
+	@JsonProperty(value="artists")
+	public Set<Artist> artists(){
+		return this.artists;
 	}
 
 }

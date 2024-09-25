@@ -14,7 +14,7 @@ spring:
 area: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: area
-  immutable: org.nanotek.brainz.base.AnyBase
+  immutable: org.nanotek.brainz.base.record.AreaRecord
   delegateMap:     
     areaId: 0 
     gid: 1 

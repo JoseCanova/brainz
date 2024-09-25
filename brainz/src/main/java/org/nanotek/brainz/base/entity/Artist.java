@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,6 +28,9 @@ MutableArtistEntity{
 	@Column(name="artistName")
 	private String artistName;
 
+	@ManyToOne(optional = true,fetch = FetchType.EAGER)
+	private Area area;
+	
 	public Artist() {
 		super();
 	}
@@ -64,7 +69,6 @@ MutableArtistEntity{
 	public String toString() {
 		return "Artist [artistId=" + artistId + ", artistName=" + artistName + "]";
 	}
-	
-	
+
 	
 }
