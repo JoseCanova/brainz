@@ -30,9 +30,4 @@ public class NioKongStreamBuilder implements Stream.Builder<String> {
 		return fileStream;
 	}
 
-	public static void main(String [] args) {
-	Flux<String> flux =	Flux.fromStream(new NioKongStreamBuilder("/home/jose/Downloads/mbdump/mbdump/area").build());
-	//Mono<String> theMono = flux.elementAt(100);
-	flux.subscribe(s -> System.out.println(s));
-	}
 }
