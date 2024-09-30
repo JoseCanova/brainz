@@ -90,7 +90,7 @@ implements MutableGenreEntity
 
 	@Override
 	public String toString() {
-		return "Genre [id=" + id + ", gid=" + gid + ", name=" + genreName + "]";
+		return "Genre [genreId=" + genreId + ", gid=" + gid + ", name=" + genreName + "]";
 	}
 	
 	

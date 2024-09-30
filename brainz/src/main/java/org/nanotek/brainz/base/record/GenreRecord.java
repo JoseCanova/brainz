@@ -19,7 +19,7 @@ implements
 GenreEntity{
 	
 	@JsonCreator
-	public GenreRecord(@JsonProperty("id") Long genreId,
+	public GenreRecord(@JsonProperty("genreId") Long genreId,
 			@JsonProperty("gid")UUID gid,
 			@JsonProperty("genreName")String genreName) {
 		this.genreId = genreId;
