@@ -25,11 +25,6 @@ implements InitializingBean{
 	@Autowired
 	GenreRepository repository;
 	
-	@Autowired
-	InstanceConverter converter;
-	
-	private Stream<String> fileStream;
-
 	@Autowired 
 	List<MapConfigurationBase> fileConfiguration;
 	
@@ -46,18 +41,12 @@ implements InitializingBean{
 				.getFileLocation().concat("/")
 				.concat(configuration.getFileName());
 		
-		fileStream = new NioKongStreamBuilder(fileStr).build();
-		
-		
 	}
 
 	public void loadGenre() {
 		
-		Flux.fromStream(fileStream)
-		.map(s -> s.split("\t"))
-		.map(sary -> mapToMap(sary,configuration))
-		.map(m -> converter.convertValue(m , configuration.getImmutable()))
-		.map(im -> converter.convertValue(im, Genre.class))
+		convertFluxStream(configuration)
+		 .map(c -> Genre.class.cast(c))
 		.map(ge -> repository.save(ge))
 		.subscribe(ar -> {
 			System.err.println(ar.toString());

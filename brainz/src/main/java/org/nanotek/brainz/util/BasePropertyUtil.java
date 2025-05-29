@@ -53,9 +53,9 @@ public interface BasePropertyUtil {
 		Class<Genre> clazz = Genre.class;
 		List<?> theList = readBaseProperties(clazz);
 		System.err.println(theList.toString());
-		Object meth = getReadMethod("name", Genre.class);
+		Object meth = getReadMethod("genreName", Genre.class);
 		System.err.println(meth.toString());
-		 meth = getReadMethod("id", Genre.class);
+		 meth = getReadMethod("genreId", Genre.class);
 		System.err.println(meth.toString());
 
 	}

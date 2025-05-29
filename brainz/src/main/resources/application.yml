@@ -57,6 +57,7 @@ genre:
   fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: genre
   immutable: org.nanotek.brainz.base.record.GenreRecord
+  baseClass: org.nanotek.brainz.base.entity.Genre
   delegateMap:
     genreId: 0
     gid: 1
@@ -111,6 +112,7 @@ fileconfig:
     fileLocation: /home/jose/Downloads/mbdump/mbdump
     fileName: genre
     immutable: org.nanotek.brainz.base.record.GenreRecord
+    baseClass: org.nanotek.brainz.base.entity.Genre
     delegateMap:
       genreId: 0
       gid: 1
