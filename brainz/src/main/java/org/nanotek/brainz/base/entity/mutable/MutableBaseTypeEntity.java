@@ -7,7 +7,6 @@ import org.nanotek.brainz.base.entity.immutables.BaseTypeEntity;
 
 public interface MutableBaseTypeEntity
     extends BaseTypeEntity,
-        MutableIdEntity<Long>,
         MutableNameEntity<String>,
         MutableGidEntity<UUID>
 {

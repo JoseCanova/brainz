@@ -20,7 +20,9 @@ public class BaseType
 extends SequenceLongBase<Long>
 implements MutableBaseTypeEntity {
 
-    @Column(name = "table_id", nullable = false)
+    private static final long serialVersionUID = 4585346867579914943L;
+
+	@Column(name = "table_id", nullable = false)
     private String tableId;
 
     @Column(name = "gid", nullable = false)
