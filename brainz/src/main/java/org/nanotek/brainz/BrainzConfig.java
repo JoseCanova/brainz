@@ -27,6 +27,14 @@ public class BrainzConfig {
 		return new MapConfigurationBase();
 	}
 	
+
+	@Bean
+	@ConfigurationProperties(value = "areatype")
+	@Qualifier(value="areatype")
+	public MapConfigurationBase mapBaseTypeConfigurationBase() {
+		return new MapConfigurationBase();
+	}
+	
 	@Bean
 	@ConfigurationProperties(value = "artist")
 	@Qualifier(value="artist")

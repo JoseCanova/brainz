@@ -11,6 +11,20 @@ spring:
     jpa.hibernate.ddl-auto=create-drop
     jpa.hibernate.format_sql=true
     
+
+areatype: 
+  fileLocation: /home/jose/Downloads/mbdump/mbdump
+  fileName: area_type
+  immutable: org.nanotek.brainz.base.record.BaseTypeRecord
+  baseClass: org.nanotek.brainz.base.entity.BaseType
+  delegateMap:     
+    typeId: 0
+    typeName: 1
+    parent: 2
+    childOrder: 3
+    description: 4
+    gid: 5 
+
 area: 
   fileLocation: /home/jose/Downloads/mbdump/mbdump
   fileName: area
@@ -141,7 +155,18 @@ fileconfig:
       childOrder: 3
       description: 4
       gid: 5   
-  
+  areatype: 
+    fileLocation: /home/jose/Downloads/mbdump/mbdump
+    fileName: area_type
+    immutable: org.nanotek.brainz.base.record.BaseTypeRecord
+    baseClass: org.nanotek.brainz.base.entity.AreaType
+    delegateMap:     
+      typeId: 0
+      typeName: 1
+      parent: 2
+      childOrder: 3
+      description: 4
+      gid: 5 
       
           
        

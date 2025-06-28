@@ -10,20 +10,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "base_type")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(
+	    discriminatorType = DiscriminatorType.STRING,
+	    name = "table_id",
+	    columnDefinition = "VARCHAR"
+	)
 public class BaseType
 extends SequenceLongBase<Long>
 implements MutableBaseTypeEntity {
 
     private static final long serialVersionUID = 4585346867579914943L;
-
-	@Column(name = "table_id", nullable = false)
-    private String tableId;
 
     @Column(name = "gid", nullable = false)
     private UUID gid;
@@ -46,28 +53,17 @@ implements MutableBaseTypeEntity {
 
     @JsonCreator
     public BaseType(
-            @JsonProperty("tableId") String tableId,
             @JsonProperty("gid") UUID gid,
             @JsonProperty("name") String name,
             @JsonProperty("childOrder") Long childOrder,
             @JsonProperty("parent") Long parent,
             @JsonProperty("typeId") Long typeId) {
         super();
-        this.tableId = tableId;
         this.gid = gid;
         this.name = name;
         this.childOrder = childOrder;
         this.parent = parent;
         this.typeId = typeId;
-    }
-
-    @JsonProperty("tableId")
-    public String tableId() {
-        return tableId;
-    }
-
-    public Optional<String> tableId(String tableId) {
-        return Optional.of(this.tableId = tableId);
     }
 
     @JsonProperty("gid")
@@ -117,7 +113,7 @@ implements MutableBaseTypeEntity {
 
     @Override
     public String toString() {
-        return "BaseType [tableId=" + tableId + ", gid=" + gid + ", name=" + name +
+        return "BaseType [gid=" + gid + ", name=" + name +
                 ", childOrder=" + childOrder + ", parent=" + parent + ", typeId=" + typeId + "]";
     }
 }

@@ -51,6 +51,7 @@ MutableAreaEntity{
 			@JsonProperty(value="gid") UUID gid, 
 			@JsonProperty(value="areaName")  String areaName) {
 		super();
+		System.err.println("called constructor");
 		this.areaId = areaId;
 		this.gid = gid;
 		this.areaName = areaName;

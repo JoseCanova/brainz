@@ -10,7 +10,6 @@ public interface MutableBaseTypeEntity
         MutableNameEntity<String>,
         MutableGidEntity<UUID>
 {
-    Optional<String> tableId(String tableId);
     Optional<Long> childOrder(Long childOrder);
     Optional<Long> parent(Long parent);
     Optional<Long> typeId(Long typeId);
