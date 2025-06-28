@@ -18,13 +18,16 @@ public class AreaType extends BaseType{
 	
 	@JsonCreator
 	public AreaType(  @JsonProperty("gid") UUID gid,
-            @JsonProperty("name") String name,
+            @JsonProperty("typeName") String name,
             @JsonProperty("childOrder") Long childOrder,
             @JsonProperty("parent") Long parent,
             @JsonProperty("typeId") Long typeId) {
 		super(gid, name, childOrder, parent, typeId);
-		System.err.println("called constructor");
-    }{
+    }
+	
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 	
 }

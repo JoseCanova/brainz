@@ -49,10 +49,10 @@ class BrainzAreaTypeRecordTest {
         Stream<String> stream = new NioKongStreamBuilder(file).build();
         Flux.fromStream(stream)
         .map(s -> s.split("\t"))
-        .map(sary -> mapToMap(sary))
+        .map(fury -> mapToMap(fury))
         .map(m -> converter.convertValue(m , configuration.getImmutable()))
         .map(m -> converter.convertValue(m, AreaType.class))
-//        .map(at -> repository.save(at))
+        .map(at -> repository.save(at))
         .subscribe(r -> System.err.println(r));
 
         // Try fetching a sample by areaType/typeId

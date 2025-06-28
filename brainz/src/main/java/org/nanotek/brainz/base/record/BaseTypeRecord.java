@@ -13,7 +13,7 @@ public record BaseTypeRecord(
     @JsonProperty("id") Long id,
     @JsonProperty("tableId") String tableId,
     @JsonProperty("gid") UUID gid,
-    @JsonProperty("name") String name,
+    @JsonProperty("typeName") String name,
     @JsonProperty("childOrder") Long childOrder,
     @JsonProperty("parent") Long parent,
     @JsonProperty("typeId") Long typeId
@@ -24,7 +24,7 @@ public record BaseTypeRecord(
         @JsonProperty("id") Long id,
         @JsonProperty("tableId") String tableId,
         @JsonProperty("gid") UUID gid,
-        @JsonProperty("name") String name,
+        @JsonProperty("typeName") String name,
         @JsonProperty("childOrder") Long childOrder,
         @JsonProperty("parent") Long parent,
         @JsonProperty("typeId") Long typeId
