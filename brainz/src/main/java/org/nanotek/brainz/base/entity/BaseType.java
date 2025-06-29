@@ -20,12 +20,12 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "base_type")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-	    discriminatorType = DiscriminatorType.STRING,
-	    name = "table_id",
-	    columnDefinition = "VARCHAR"
-	)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(
+//	    discriminatorType = DiscriminatorType.STRING,
+//	    name = "table_id",
+//	    columnDefinition = "VARCHAR"
+//	)
 public class BaseType
 extends SequenceLongBase<Long>
 implements MutableBaseTypeEntity {
