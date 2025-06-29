@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public interface ArtistTypeEntity 
 extends TypeIdEntity<Long>,
-TypeNameEntity<String>,
+NameEntity<String>,
 ParentEntity<Long>,
 DescriptionEntity<String>,
 GidEntity<UUID>{
