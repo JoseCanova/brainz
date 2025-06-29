@@ -58,7 +58,7 @@ public class BrainzArtistTypeTest{
 				.build();
 		Flux.fromStream(fileStream)
 		.map(s -> s.split("\t"))
-		.map(sary -> mapToMap(sary))
+		.map(fury -> mapToMap(fury))
 		.map(m -> converter.convertValue(m , artistTypeConfiguration.getImmutable()))
 		.map(m -> converter.convertValue(m, ArtistType.class))
 		.subscribe(at -> repository.save(at));

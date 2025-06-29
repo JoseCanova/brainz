@@ -22,13 +22,13 @@ extends SequenceLongBase<Long>
 implements MutableGenreEntity
 {
 
-	@Column(name="genreId")
+	@Column(name="genreId", columnDefinition =  "bigint , not null")
 	private Long genreId;
 	
-	@Column(name="genreName")
+	@Column(name="genreName" , columnDefinition =  "varchar , not null")
 	private String genreName;
 	
-	@Column(name="gid")
+	@Column(name="gid" , columnDefinition =  "varchar , not null")
 	private UUID gid; 
 	
 	public Genre() {

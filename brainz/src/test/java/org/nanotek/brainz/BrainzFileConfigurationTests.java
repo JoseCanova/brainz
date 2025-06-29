@@ -50,7 +50,7 @@ public class BrainzFileConfigurationTests {
 	   Flux
 	   .fromStream(genreStream)
 	   .map(s -> s.split("\t"))
-	   .map(sary -> mapToMap(sary , genreConfiguration.getDelegateMap()))
+	   .map(fury -> mapToMap(fury , genreConfiguration.getDelegateMap()))
 	   .map(s -> objectMapper.convertValue(s , genreConfiguration.getImmutable()))
 	   .subscribe( v -> System.err.println(v.toString()));
 

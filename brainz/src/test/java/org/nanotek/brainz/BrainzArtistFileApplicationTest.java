@@ -48,7 +48,7 @@ public class BrainzArtistFileApplicationTest {
 					fromStream(theStream);
 		flux
 		.map(s -> s.split("\t"))
-		.map(sary -> mapToMap(sary))
+		.map(fury -> mapToMap(fury))
 		.map(map ->  csvMapUtils. writeJsonString(map))
 		.map(s -> csvMapUtils.readValue(s , clazz))
 		.filter(ar -> ar.artistName()!=null)

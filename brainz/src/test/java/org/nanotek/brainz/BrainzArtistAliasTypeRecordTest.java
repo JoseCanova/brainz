@@ -50,7 +50,7 @@ class BrainzArtistAliasTypeRecordTest {
 		Stream<String> stream = new NioKongStreamBuilder(fileAlias).build();
 		Flux.fromStream(stream)
 		.map(s ->s.split("\t"))
-		.map(sary ->mapToMap(sary))
+		.map(fury -> mapToMap(fury))
 		.map(m -> converter.convertValue(m , configuration.getImmutable()))
 		.map(m -> converter.convertValue(m, ArtistAliasType.class))
 		.map(at -> repository.save(at))

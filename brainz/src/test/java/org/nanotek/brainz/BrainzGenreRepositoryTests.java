@@ -60,7 +60,7 @@ public class BrainzGenreRepositoryTests {
 	   Flux
 	   .fromStream(genreStream)
 	   .map(s -> s.split("\t"))
-	   .map(sary -> mapToMap(sary , genreConfiguration.getDelegateMap()))
+	   .map(fury -> mapToMap(fury , genreConfiguration.getDelegateMap()))
 	   .map(s -> objectMapper.convertValue(s , genreConfiguration.getImmutable()))
 	   .map(g -> objectMapper.convertValue(g , Genre.class))
 	   .map(g -> genreRepository.save(g))
