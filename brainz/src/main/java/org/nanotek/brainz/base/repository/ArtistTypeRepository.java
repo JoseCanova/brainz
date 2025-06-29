@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArtistTypeRepository extends
-TypeIdAccessor<ArtistTypeRecord> , NameAccessor<ArtistTypeRecord>,
+TypeIdAccessor<ArtistTypeRecord> , 
+NameAccessor<ArtistTypeRecord,String>,
 SequenceLongBaseRepository<ArtistType> {
-
 }
