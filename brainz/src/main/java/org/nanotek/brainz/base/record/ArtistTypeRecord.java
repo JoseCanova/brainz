@@ -8,9 +8,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record ArtistTypeRecord
-(Long typeId,String name,Long parent,String description,UUID gid) 
+(@NotNull Long typeId,
+		@NotNull @NotEmpty  String name,
+		 @Nullable Long parent,
+		 @Nullable String description,
+		 @NotNull UUID gid) 
 implements ArtistTypeEntity{
 
 	@JsonCreator
